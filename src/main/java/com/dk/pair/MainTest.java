@@ -282,8 +282,7 @@ public class MainTest {
 	                    	String a = sb.toString();
 	                    	 System.out.println(a);
 	                    	 RfidInfo info = util.getInfo(a);
-	                    	 Timestamp time = new Timestamp(System.currentTimeMillis());
-	                    	 if(info.getCreateTime()!=null&&System.currentTimeMillis()-time.getTime()>5000){
+	                    	 if(info.getCreateTime()!=null&&System.currentTimeMillis()-info.getCreateTime().getTime()>5000){
 	                    		 boolean flag = util.addInfo(str);
 	                    		 if(flag){
 	                    			 System.out.println("保存成功");
@@ -296,15 +295,14 @@ public class MainTest {
 	                    	System.out.println(sb.substring(0,72));
 	                    	String a = sb.substring(72);
 	                    	RfidInfo info = util.getInfo(a);
-	                    	 Timestamp time = new Timestamp(System.currentTimeMillis());
-	                    	 if(info.getCreateTime()!=null&&System.currentTimeMillis()-time.getTime()>5000){
+	                    	if(info.getCreateTime()!=null&&System.currentTimeMillis()-info.getCreateTime().getTime()>5000){
 	                    		 boolean flag = util.addInfo(str);
 	                    		 if(flag){
 	                    			 System.out.println("保存成功");
 	                    		 }else{
 	                    			 System.out.println("保存失败");
 	                    		 }
-	                    	 }
+	                    	}
 	                    	sb.setLength(0);
 	                    	sb.append(a);
 //	                    	System.out.println(sb.toString());

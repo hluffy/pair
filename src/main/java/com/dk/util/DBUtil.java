@@ -40,7 +40,7 @@ public class DBUtil {
 			String username = prop.getProperty("username");
 			String password = prop.getProperty("password");
 			int maxActive = Integer.parseInt(prop.getProperty("maxactive"));
-			int maxWait = Integer.parseInt(prop.getProperty("maxwait"));
+//			int maxWait = Integer.parseInt(prop.getProperty("maxwait"));
 			//初始化连接池
 			ds = new BasicDataSource();
 			//将JDBC建立连接所需要的信息设置到连接池中
@@ -56,7 +56,7 @@ public class DBUtil {
 			//设置连接池最大连接数
 			ds.setMaxActive(maxActive);
 			//设置最大等待时间
-			ds.setMaxWait(maxWait);
+//			ds.setMaxWait(maxWait);
 		
 //			ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");  
 //			ds = (BasicDataSource) ctx.getBean("dataSource"); 

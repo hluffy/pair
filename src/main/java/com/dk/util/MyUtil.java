@@ -24,7 +24,8 @@ public class MyUtil {
 			ps.setString(2, info.getEpc());
 			ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
 			
-			flag = ps.execute();
+			ps.execute();
+			flag = true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
