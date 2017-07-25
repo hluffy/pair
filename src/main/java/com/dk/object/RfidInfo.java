@@ -12,6 +12,7 @@ public class RfidInfo implements Serializable{
 	private String name;
 	private String epc;
 	private Timestamp createTime;
+	private String pc;
 	public long getId() {
 		return id;
 	}
@@ -35,6 +36,12 @@ public class RfidInfo implements Serializable{
 	}
 	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
+	}
+	public String getPc() {
+		return pc;
+	}
+	public void setPc(String pc) {
+		this.pc = pc;
 	}
 	
 

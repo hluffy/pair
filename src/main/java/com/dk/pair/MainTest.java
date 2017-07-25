@@ -266,54 +266,82 @@ public class MainTest {
 	                    String str = byteToString(data);
 //	                    System.out.println(str);
 	                    sb.append(str);
-	                    String head = null;
-	                    if(sb.length()>=4){
-	                    	head = sb.substring(0,4);
-	                    }
-	                    if(sb.length()==24&&"0100".equals(head)){
-	                    	System.out.println(sb.toString());
+	                    
+	                    if(sb.length()==72){
+	                    	final String rfidData = sb.toString();
 	                    	sb.setLength(0);
-	                    }else if(sb.length()>24&&"0100".equals(head)){
-	                    	System.out.println(sb.substring(0,24));
-	                    	String a = sb.substring(24);
-	                    	sb.setLength(0);
-	                    	sb.append(a);
-	                    }else if(sb.length()==72&&"0112".equals(head)){
-	                    	String a = sb.toString();
-	                    	 System.out.println(a);
-	                    	 RfidInfo info = util.getInfo(a);
-	                    	 if(info.getCreateTime()!=null&&System.currentTimeMillis()-info.getCreateTime().getTime()>5000){
-	                    		 boolean flag = util.addInfo(str);
-	                    		 if(flag){
-	                    			 System.out.println("保存成功");
-	                    		 }else{
-	                    			 System.out.println("保存失败");
-	                    		 }
-	                    	 }
-	                    	 sb.setLength(0);
-	                    }else if(sb.length()>72&&"0112".equals(head)){
-	                    	System.out.println(sb.substring(0,72));
-	                    	String a = sb.substring(72);
-	                    	RfidInfo info = util.getInfo(a);
-	                    	if(info.getCreateTime()!=null&&System.currentTimeMillis()-info.getCreateTime().getTime()>5000){
-	                    		 boolean flag = util.addInfo(str);
-	                    		 if(flag){
-	                    			 System.out.println("保存成功");
-	                    		 }else{
-	                    			 System.out.println("保存失败");
-	                    		 }
+	                    	System.out.println(rfidData);
+	                    	if("0112".equals(rfidData.substring(0,4))){
+	                    		new Thread(new Runnable() {
+									
+									public void run() {
+										// TODO Auto-generated method stub
+										RfidInfo info = util.getInfo(rfidData);
+										if(info.getCreateTime()!=null&&System.currentTimeMillis()-info.getCreateTime().getTime()>3000){
+											boolean flag = util.addInfo(rfidData);
+				                    		if(flag){
+				                    			System.out.println("保存成功");
+				                    		}else{
+				                    			System.out.println("保存失败");
+				                    		}
+										}
+									}
+								}).start();
+	                    		
 	                    	}
-	                    	sb.setLength(0);
-	                    	sb.append(a);
-//	                    	System.out.println(sb.toString());
-	                    }else if(sb.length()<4){
-	                    	
-	                    }else if("0100".equals(head)||"0112".equals(head)){
-	                    	
-	                    }else{
-//	                    	System.out.println(sb.toString());
+	                    }
+	                    if(sb.length()>72){
 	                    	sb.setLength(0);
 	                    }
+	                    
+//	                    String head = null;
+//	                    if(sb.length()>=4){
+//	                    	head = sb.substring(0,4);
+//	                    }
+//	                    if(sb.length()==24&&"0100".equals(head)){
+//	                    	System.out.println(sb.toString());
+//	                    	sb.setLength(0);
+//	                    }else if(sb.length()>24&&"0100".equals(head)){
+//	                    	System.out.println(sb.substring(0,24));
+//	                    	String a = sb.substring(24);
+//	                    	sb.setLength(0);
+//	                    	sb.append(a);
+//	                    }else if(sb.length()==72&&"0112".equals(head)){
+//	                    	String a = sb.toString();
+//	                    	 System.out.println(a);
+//	                    	 RfidInfo info = util.getInfo(a);
+//	                    	 if(info.getCreateTime()!=null&&System.currentTimeMillis()-info.getCreateTime().getTime()>5000){
+//	                    		 boolean flag = util.addInfo(str);
+//	                    		 if(flag){
+//	                    			 System.out.println("保存成功");
+//	                    		 }else{
+//	                    			 System.out.println("保存失败");
+//	                    		 }
+//	                    	 }
+//	                    	 sb.setLength(0);
+//	                    }else if(sb.length()>72&&"0112".equals(head)){
+//	                    	System.out.println(sb.substring(0,72));
+//	                    	String a = sb.substring(72);
+//	                    	RfidInfo info = util.getInfo(a);
+//	                    	if(info.getCreateTime()!=null&&System.currentTimeMillis()-info.getCreateTime().getTime()>5000){
+//	                    		 boolean flag = util.addInfo(str);
+//	                    		 if(flag){
+//	                    			 System.out.println("保存成功");
+//	                    		 }else{
+//	                    			 System.out.println("保存失败");
+//	                    		 }
+//	                    	}
+//	                    	sb.setLength(0);
+//	                    	sb.append(a);
+////	                    	System.out.println(sb.toString());
+//	                    }else if(sb.length()<4){
+//	                    	
+//	                    }else if("0100".equals(head)||"0112".equals(head)){
+//	                    	
+//	                    }else{
+////	                    	System.out.println(sb.toString());
+//	                    	sb.setLength(0);
+//	                    }
 	                    
 //	                    if(sb.length()>=4){
 //	                    	String a = sb.substring(0,4);

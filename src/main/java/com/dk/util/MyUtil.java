@@ -16,13 +16,14 @@ public class MyUtil {
 		PreparedStatement ps = null;
 		
 		try {
-			String sql = "insert into rfid(name,epc,create_time) values(?,?,?)";
+			String sql = "insert into rfid(name,epc,create_time,pc) values(?,?,?,?)";
 			conn = DBUtil.getConnection();
 			ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, info.getName());
 			ps.setString(2, info.getEpc());
 			ps.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+			ps.setString(4, info.getPc());
 			
 			ps.execute();
 			flag = true;

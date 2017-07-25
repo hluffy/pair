@@ -6,6 +6,7 @@ public class RFIDUtil {
 	public boolean addInfo(String str){
 		boolean flag = false;
 		RfidInfo info = new RfidInfo();
+		info.setPc(str.substring(40,44));
 		info.setEpc(str.substring(44,68));
 		flag = MyUtil.addInfo(info);
 		return flag;
